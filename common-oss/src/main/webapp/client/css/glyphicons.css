@@ -1,0 +1,13 @@
+/**以下内容是glyphicons付费内容，请勿公开使用**/
+@font-face {
+    font-family: 'Glyphicons All';
+    src: url('../../plugins/bootstrap-3.1.1/dist/fonts/glyphicons-regular.eot');
+    src: url('../../plugins/bootstrap-3.1.1/dist/fonts/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('../../plugins/bootstrap-3.1.1/dist/fonts/glyphicons-regular.woff') format('woff'), url('../../plugins/bootstrap-3.1.1/dist/fonts/glyphicons-regular.ttf') format('truetype'), url('../../plugins/bootstrap-3.1.1/dist/fonts/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.icon-radio.glyphicon{
+    font-family: 'Glyphicons All';
+}
+.glyphicon-regular-group:before {
+    font-family: 'Glyphicons All';
+    content: "\e044";
+}

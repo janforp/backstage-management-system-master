@@ -1,0 +1,83 @@
+/*后台共用的样式文件*/
+
+body {
+    /*font-family:  "宋体",Calibri, Helvetica, Arial, sans-serif;*/
+    /*font-size: 62.5%;*/
+}
+/*页面名 span*/
+.pageTitle{
+    display: inline-block;
+    color:#0000F9 ;
+    font-size: 2rem;
+    margin-right: 1.5rem;
+    padding-right: 1rem;
+}
+/*搜索条件名字*/
+.searchTitle{
+    font-size: 2rem;
+    margin:0 1rem;
+}
+.time{
+
+    height: 2rem;
+}
+.select{
+    height: 2rem;
+    width: 10rem;
+}
+
+thead th{
+    text-align: center;
+}
+
+tr td {
+    /*text-align: center;*/
+    font-size: 20px;
+}
+
+/*查询按钮*/
+.searchButton{
+
+    border: 1px solid black;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    margin-left: 20px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+/*按钮div*/
+.functionButtonDiv{
+    padding: 30px 0;
+    border-bottom: 1px solid #EFEFEF;
+}
+.functionButton{
+    border: 1px solid black;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    margin-right: 20px;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/*一个列表的标题/说明*/
+.tableTitle{
+    display: inline-block;
+    font-size: 25px;
+    margin:1rem 1.5rem 1rem 0;
+}
+
+
+
+
+/*按钮组件 start*/
+.btn-blue{
+    background-color: blue;
+    color: white;
+}
+.btn-red{
+    background-color: red;
+    color: white;
+}
+/*按钮组件 over*/

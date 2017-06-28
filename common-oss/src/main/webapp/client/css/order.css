@@ -1,0 +1,28 @@
+.bdsug {
+    display: none;
+    position: absolute;
+    height: auto;
+    z-index: 2;
+    width: 538px;
+    background: #fff;
+    border: 1px solid #ccc;
+    _overflow: hidden;
+    box-shadow: 1px 1px 3px #ededed;
+    -webkit-box-shadow: 1px 1px 3px #ededed;
+    -moz-box-shadow: 1px 1px 3px #ededed;
+    -o-box-shadow: 1px 1px 3px #ededed;
+}
+
+.inputlocation {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 10%;
+}
+.inputlocationauto{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: auto;
+}
+.inputpercent{
+    width:100%;
+}

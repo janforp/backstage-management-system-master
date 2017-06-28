@@ -1,0 +1,116 @@
+/*
+checkbox:
+<label class="img_checkbox_label">
+    <i class="icon_checkbox"></i>
+    <input type="checkbox" class="img_checkbox">
+    <span>我同意并遵守上述的《XXX协议》</span>
+</label>
+
+radio:
+<label class="img_radio_label" for="checkbox14">
+    <i class="icon_radio"></i>
+    <span>是</span>
+    <input type="radio" name="paramName" class="img_radio" value="1">
+</label>
+*/
+.img_radio_label, .img_checkbox_label {
+    display: inline-block;
+    text-align: left;
+    cursor: pointer;
+    margin-right: 1em;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -78px no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -0.2em;
+}
+
+.icon_radio {
+    background: url("../img/checkbox-radio.png") 0 0 no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -0.2em;
+}
+
+.icon_checkbox {
+    margin-right: 4px;
+}
+
+.icon_radio {
+    margin-right: 4px;
+}
+
+.icon_radio, .icon_checkbox {
+    margin-right: 3px;
+    margin-top: -2px;
+}
+
+.icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -286px no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.icon_radio {
+    background: url("../img/checkbox-radio.png") 0 -182px no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.img_radio, .img_checkbox {
+    position: absolute;
+    left: -999em;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/*selected - start*/
+
+.icon_checkbox.selected, .selected .icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -104px no-repeat;
+}
+
+.icon_checkbox.selected, .selected .icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -312px no-repeat;
+}
+
+.icon_radio.selected, .selected .icon_radio {
+    background: url("../img/checkbox-radio.png") 0 -26px no-repeat;
+}
+
+.icon_radio.selected, .selected .icon_radio {
+    background: url("../img/checkbox-radio.png") 0 -208px no-repeat;
+}
+
+/*selected - end*/
+
+/*disabled - start*/
+.img_radio_label.disabled, .img_checkbox_label.disabled {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.icon_checkbox.disabled, .disabled .icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -338px no-repeat
+}
+
+.icon_checkbox.selected.disabled, .selected.disabled .icon_checkbox {
+    background: url("../img/checkbox-radio.png") 0 -364px no-repeat
+}
+
+/*disabled - end*/

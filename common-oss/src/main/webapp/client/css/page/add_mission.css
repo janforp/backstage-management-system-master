@@ -1,0 +1,144 @@
+body {
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+}
+
+.editor-header {
+    margin-top: 20px;
+}
+
+.separator_line {
+    margin-top: 10px;
+    height: 1px;
+    background-color: #CCCCCC;
+}
+
+.editor-body {
+    margin-top: 10px;
+}
+
+/*.editor-form-group {*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+/*}*/
+
+.form-input {
+    font-family: "PingFang SC";
+    font-weight: lighter;
+    border: solid 1px;
+    border-color: transparent transparent transparent transparent;
+}
+
+/*商家信息*/
+.mission-merchant {
+    /*border:solid 1px #ccc;*/
+    padding: 10px;
+}
+
+.col2 {
+    margin-top: 10px;
+}
+
+.col3 {
+    margin-top: 10px;
+}
+
+.col4 {
+    margin-top: 10px;
+}
+
+.col5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button-add-merchant-logo {
+    background-color: transparent;
+    margin-left: 10px;
+    border: solid 1px;
+    border-color: #ccc;
+    border-radius: 4px;
+    width: 150px;
+}
+
+.merchant-logo {
+    border:solid 1px #ccc;
+    margin-top: -10px;
+    margin-right: -10px;
+    float: right;
+    width: 80px;
+    height: 80px;
+}
+
+.form-input-mission-merchant-name {
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.form-input:active {
+    border-color: transparent;
+}
+
+.form-input-mission-title {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/*底部按钮*/
+.editor-footer {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/*任务步骤*/
+.mission-step {
+    /*border:solid 1px #ccc;*/
+    padding: 10px;
+}
+
+.qr-code {
+    border:solid 1px #ccc;
+    margin-top: -10px;
+    margin-right: -10px;
+    float: right;
+    width: 80px;
+    height: 80px;
+}
+
+.muti_box {
+    width: 80%;
+    margin: 10px;
+    height: auto;
+}
+
+.muti_box li {
+    width: 55px;
+    margin-right: 5px;
+    height: 55px;
+    position: relative;
+    margin-top: 5px;
+    text-align: center;
+    float: left;
+    border: 1px solid #ddd;
+}
+
+.muti_box li span {
+    position: absolute;
+    padding: 1px;
+    display: none;
+    width: 12px;
+    height: 12px;
+    background: #ff0000;
+    color: #fff;
+    top: 0px;
+    right: 0px;
+    line-height: 12px;
+    cursor: pointer;
+}
+
+.muti_box li:hover span {
+    display: block;
+}
