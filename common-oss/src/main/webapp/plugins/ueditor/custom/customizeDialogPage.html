@@ -1,0 +1,191 @@
+ <html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <script src="/plugins/jquery/jquery-1.9.1.min.js"></script>
+        <link href="http://localhost:8082/plugins/ueditor/themes/default/dialogbase.css?cache=0.5863249486891411" type="text/css" rel="stylesheet">
+        <script src="/plugins/ueditor/dialogs/internal.js"></script>
+        <script src="/plugins/ueditor/ueditor.config.js"></script>
+        <script src="/plugins/ueditor/ueditor.all.js"></script>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+                color: #838383;
+            }
+
+            table {
+                font-size: 12px;
+                margin: 10px;
+                line-height: 30px
+            }
+
+            .txt {
+                width: 300px;
+                height: 21px;
+                line-height: 21px;
+                border: 1px solid #d7d7d7;
+            }
+        </style>
+        <script>
+
+            var buttonDia = {
+
+                buttonType:null,
+                buttonTitle:null,
+                buttonParams:null,
+
+                typeChange:function () {
+
+                    var type = $("input[name=btnFunction]:checked").val();
+
+                    if (type == '0'){
+                        $("#alert").css('color','red');
+                        $("#type").val("请选择按钮类型")
+                        $("#param").attr("placeholder","请输入按钮参数");
+                    }else if (type == 'copy'){
+                        $("#type").val("复制关键词")
+                        $("#param").attr("placeholder","请输入要复制的'关键词'");
+                    }else if (type == 'download'){//3个参数
+                        $("#type").val("下载APP")
+                        $("#param").attr("placeholder","app名字&apk地址&标志(0-手动,1-自动打开)");
+                    }else if (type == 'openApp'){
+                        $("#type").val("打开APP")
+                        $("#param").attr("placeholder","请输入要打开应用的'包名'");
+                    }else if (type == 'link'){
+                        $("#type").val("超链接")
+                        $("#param").attr("placeholder","请输入要打开的'超链接'");
+                    }
+                },
+
+                checkTitle:function () {
+                    this.getButtonProperties();
+                    if (this.buttonTitle == ''){
+                        $G("msg").innerHTML = "<span style='color: red'>" + "请输入按钮标题" + "</span>";
+                    } else {
+                        $G("msg").innerHTML = "";
+                    }
+                },
+                checkParams:function () {
+                    this.getButtonProperties();
+                    if(this.buttonParams == ''){
+                        $G("msg").innerHTML = "<span style='color: red'>" + "请输入按钮参数" + "</span>";
+                    }else {
+                        $G("msg").innerHTML = "";
+                    }
+                },
+
+                getButtonProperties:function () {
+                    this.buttonTitle=$("#title").val().trim();
+                    this.buttonParams=$("#param").val().trim();
+                    this.buttonType = $("#type").val();
+                }
+            };
+        </script>
+    </head>
+    <body>
+    <table>
+        <tbody>
+        <td><label>按钮功能:</label></td>
+        <td>
+            <form>
+                <label for="copy" style="margin-right: 5px;">复制文字
+                    <input type="radio" id="copy" name="btnFunction" value="copy"  onchange="buttonDia.typeChange();">
+                </label>
+                <label for="download" style="margin-right: 5px;">下载应用
+                    <input type="radio" id="download" name="btnFunction" value="download" onchange="buttonDia.typeChange();">
+                </label>
+                <label for="openApp" style="margin-right: 5px;">打开应用
+                    <input type="radio" id="openApp" name="btnFunction" value="openApp" onchange="buttonDia.typeChange();">
+                </label>
+                <label for="link" style="margin-right: 5px;">打开链接
+                    <input type="radio" id="link" name="btnFunction" value="link" onchange="buttonDia.typeChange();">
+                </label>
+            </form>
+        </td>
+
+        <tr>
+            <td><label for="title"> 按钮标题：</label></td>
+            <td><input class="txt" id="title" type="text" onblur="buttonDia.checkTitle();"></td>
+        </tr>
+        <tr>
+            <td><label for="param"> 按钮参数：</label></td>
+            <td><input class="txt" id="param" type="text" onblur="buttonDia.checkParams();"></td>
+        </tr>
+        <tr>
+            <td><label>样式:</label></td>
+            <td>
+                <form>
+                    <label for="yellow" style="background-color:#FFC30D;padding:2px 5px;margin-right: 5px; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" id="yellow" name="class-option" value="#FFC30D" checked="checked">
+
+                    <label for="blue" style="background-color:#3CCAFF;padding:2px 5px; margin-right: 5px;margin-left: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" id="blue" name="class-option" value="#3CCAFF">
+
+                    <label for="red" style="background-color:#F96301;padding:2px 5px; margin-right: 5px;margin-left: 12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" id="red" name="class-option" value="#F96301">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" id="msg"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        dialog.onok = function (){
+
+            var totalStype =  "style = 'display:block;letter-spacing: 2px; width: 100%;padding: 0.5rem 0; margin: 0.5rem 2rem 0.5rem 0;border-radius: 4px;text-align: center;color: #FFF2D1;text-decoration: none;font-size:1rem;";
+            var bgColor = $("input[name=class-option]:checked").val();
+            totalStype = totalStype +"background-color:"+ bgColor+"'";
+
+
+            var type = $("input[name=btnFunction]:checked").val();
+            var title = $("#title").val().trim();
+            var param = $("#param").val().trim();
+            if (type == '0' || title.trim() == ""|| title == null ||title==undefined ||param == ""|| param == null ||param==undefined ) {
+                return;
+            }
+
+            var newBtn;
+            if (type == 'link'){//为打开一个链接,不用调app的原生代码
+                newBtn = "<a href='javaScript:gotoAnotherUrl(\""+param+"\");' "+totalStype+"><span>"+title+"</span></a>"
+            }else if(type == 'openApp'){//否则,把参数放入value中
+                newBtn = "<a href='javaScript:openApp(\""+param+"\");' "+totalStype+"><span>"+title+"</span></a>"
+            }else if(type == 'copy'){//否则,把参数放入value中
+                newBtn = "<a href='javaScript:copyWord(\""+param+"\");' "+totalStype+"><span>"+title+"</span></a>"
+            }else if(type == 'download'){//否则,把参数放入value中
+                //若是下载app,则需要三个参数,用|分开
+                var params = param.split("&");
+                if (params.length<3){
+                    $G("msg").innerHTML = "<span style='color: red'>下载按钮需要三个参数</span>";
+                    return;
+                }
+                var appName = params[0];
+                if (appName == ""|| appName == null ||appName==undefined){
+                    $G("msg").innerHTML = "<span style='color: red'>下载按钮需要三个参数</span>";
+                    return;
+                }
+
+                var appUrl = params[1];
+                if (appUrl == ""|| appUrl == null ||appUrl==undefined){
+                    $G("msg").innerHTML = "<span style='color: red'>下载按钮需要三个参数</span>";
+                    return;
+                }
+                var flag = params[2];
+                if (flag == ""|| flag == null ||flag==undefined){
+                    $G("msg").innerHTML = "<span style='color: red'>下载按钮需要三个参数</span>";
+                    return;
+                }
+                newBtn = "<a href='javaScript:downloadApp(\""+appName+"\",\""+appUrl+"\",\""+flag+"\");' "+totalStype+"><span>"+title+"</span></a>";
+            }
+
+            editor.execCommand("insertHtml", newBtn);
+            dialog.close();
+        };
+
+    </script>
+    </body>
+ </html>
