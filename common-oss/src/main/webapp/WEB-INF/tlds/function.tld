@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>f</short-name>
+    <uri>http://www.lswuyou.com/functions</uri>
+
+    <function>
+        <description>Base</description>
+        <name>isEmpty</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>boolean isEmpty(java.lang.Object)</function-signature>
+        <example>${f:isEmpty(list)}/${f:isEmpty(string)}/${f:isEmpty(array)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>fmt10Time</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String fmt10Time(java.lang.Integer)))</function-signature>
+        <example>${f:fmt10Time(timestampInMs)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>isNotEmpty</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>boolean isNotEmpty(java.lang.Object)</function-signature>
+        <example>${f:isNotEmpty(list)}/${f:isNotEmpty(string)}/${f:isNotEmpty(array)}</example>
+    </function>
+    <function>
+        <description>Base</description>
+        <name>size</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>int size(java.lang.Object)</function-signature>
+        <example>${f:size(list)}/${f:size(string)}/${f:size(array)}</example>
+    </function>
+    <function>
+        <description>Base</description>
+        <name>contains</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>boolean contains(java.lang.Object, java.lang.Object)</function-signature>
+        <example>${f:contains(list, val)}/${f:contains(array, val)}/${f:contains(string, val)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>htmlEscape</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String htmlEscape(java.lang.String)</function-signature>
+        <example>${f:htmlEscape(string)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>fmtTime</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String fmtTime(java.lang.Long)</function-signature>
+        <example>${f:fmtTime(timestampInMs)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>fmtMinute</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String fmtMinute(java.lang.Long)</function-signature>
+        <example>${f:fmtMinute(timestampInMs)}</example>
+    </function>
+
+    <function>
+        <description>Base</description>
+        <name>fmtDay</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String fmtDay(java.lang.Long)</function-signature>
+        <example>${f:fmtDay(timestampInMs)}</example>
+    </function>
+
+    <function>
+        <description>ElBase</description>
+        <name>json</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String json(java.lang.Object)</function-signature>
+        <example>${f:json(bean)}</example>
+    </function>
+
+    <function>
+        <description>ElBase</description>
+        <name>roundPrice</name>
+        <function-class>com.envolope.oss.util.el.ElBase</function-class>
+        <function-signature>java.lang.String roundPrice(java.lang.Integer)</function-signature>
+        <example>${f:roundPrice(price)}</example>
+    </function>
+
+    <function>
+        <description>PermissionJudge</description>
+        <name>hasAuth</name>
+        <function-class>com.envolope.oss.util.el.ElPermissionJudge</function-class>
+        <function-signature>boolean hasAuth(java.lang.String))</function-signature>
+        <example>${f:hasAuth(requestUri)}</example>
+    </function>
+
+</taglib>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2013 Raycloud.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 自动扫描且只扫描@Controller -->
+    <context:component-scan base-package="com.envolope.oss.web.controller" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <mvc:interceptors>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+    <!--基于Cookie的国际化实现-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <!-- 设置cookieName名称，可以根据名称通过js来修改设置，也可以像上面演示的那样修改设置，默认的名称为 类名+LOCALE（即：org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE-->
+        <property name="cookieName" value="lang"/>
+        <!-- 设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT-->
+        <property name="cookieMaxAge" value="100000"/>
+        <!-- 设置cookie可见的地址，默认是“/”即对网站所有地址都是可见的，如果设为其它地址，则只有该地址或其后的地址才可见-->
+        <property name="cookiePath" value="/"/>
+    </bean>
+    <!--基于请求头的国际化实现-->
+    <!--<bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>-->
+
+    <!--全局表单验证对象-->
+    <bean id="globalFormValidator" class="com.wujie.common.validation.support.spring.GlobalFormValidator">
+        <property name="ruleSource" ref="ruleSource"/>
+        <property name="formRuleSource" ref="formRuleSource"/>
+        <property name="isValidateAllError" value="false"/>
+    </bean>
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" validator="globalFormValidator">
+        <!--全局都使用globalFormValidator做验证-->
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+                <!--不要在response头中，输出那一长串的Accept-Charset-->
+                <property name="writeAcceptCharset" value="false"/>
+            </bean>
+            <!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="prettyPrint" value="true"/>
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="serializationInclusion">
+                            <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+                        </property>
+                    </bean>
+                </property>
+            </bean>-->
+            <!--<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">-->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="features">
+                    <array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+                        <!-- 禁用FastJson循环引用特性 -->
+                        <value>DisableCircularReferenceDetect</value>
+                        <value>QuoteFieldNames</value>
+                    </array>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 指定所上传文件的总大小不能超过2048KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+        <property name="maxUploadSize" value="209715200"/>
+    </bean>
+
+    <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <value>
+                json=application/json
+                xml=application/xml
+                html=text/html
+            </value>
+        </property>
+    </bean>
+
+    <!--<mvc:view-restcontroller path="/" view-name=""/>-->
+
+    <!--<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.tiles3.TilesView</value>
+        </property>
+        <property name="order" value="1"/>
+    </bean>-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.InternalResourceView</value>
+        </property>
+        <property name="order" value="1"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->
+    <mvc:default-servlet-handler/>
+
+</beans>

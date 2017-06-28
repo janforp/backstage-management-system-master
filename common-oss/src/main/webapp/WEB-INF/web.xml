@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2013 Raycloud.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <display-name>red-envelope-oss</display-name>
+    <!-- Spring ApplicationContext配置文件的路径,可使用通配符，用于后面的Spring Context Loader -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/spring/spring-profile.xml
+        </param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>development</param-value>
+        <!--<param-value>production</param-value>-->
+    </context-param>
+
+    <context-param>
+        <!--获取国家化消息时，是否默认进行HtmlEsccape-->
+        <param-name>defaultHtmlEscape</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!--Spring ApplicationContext 载入 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!--在Spring启动后 载入 -->
+    <listener>
+        <listener-class>com.janita.common.oss.listener.ProjectServletContextListener</listener-class>
+    </listener>
+
+    <!-- Spring MVC Servlet -->
+    <servlet>
+        <servlet-name>springServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springServlet</servlet-name>
+        <!--对应web.controller下的所有Controller-->
+        <url-pattern>/c/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Filter 定义 -->
+    <!-- Character Encoding filter -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>jettyGzipFilter</filter-name>
+        <filter-class>org.eclipse.jetty.servlets.GzipFilter</filter-class>
+        <init-param>
+            <param-name>mimeTypes</param-name>
+            <param-value>
+                audio/x-mpeg,application/json,text/javascript,application/x-javascript,text/html,text/css,image/gif,image/png,image/jpeg
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>methods</param-name>
+            <param-value>GET,POST</param-value>
+        </init-param>
+        <init-param>
+            <param-name>minGzipSize</param-name>
+            <param-value>256</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>baseFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <!--filter-mapping-->
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>jettyGzipFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>baseFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>false</el-ignored>
+            <page-encoding>UTF-8</page-encoding>
+            <scripting-invalid>false</scripting-invalid>
+            <include-prelude>/WEB-INF/views/base/common.jsp</include-prelude>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.html</url-pattern>
+            <el-ignored>true</el-ignored>
+            <page-encoding>UTF-8</page-encoding>
+            <scripting-invalid>true</scripting-invalid>
+        </jsp-property-group>
+    </jsp-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/c/page/pub/error/404</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/c/page/pub/error/403</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/c/page/pub/error/500</location>
+    </error-page>
+</web-app>
