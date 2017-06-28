@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.orgwy_blocked_device-mapper.xml//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <mappers>
+        <mapper resource="mybatis/mappers/oss_menu_module-mapper.xml"/>
+        <mapper resource="mybatis/mappers/oss_menu_module-custom-mapper.xml"/>
+
+        <mapper resource="mybatis/mappers/oss_menu_function-mapper.xml"/>
+        <mapper resource="mybatis/mappers/oss_menu_function-custom-mapper.xml"/>
+
+        <mapper resource="mybatis/mappers/oss_role-mapper.xml"/>
+        <mapper resource="mybatis/mappers/oss_role-custom-mapper.xml"/>
+
+        <mapper resource="mybatis/mappers/oss_rel_role_menu_function-mapper.xml"/>
+        <mapper resource="mybatis/mappers/oss_rel_role_menu_function-custom-mapper.xml"/>
+
+        <mapper resource="mybatis/mappers/oss_admin-mapper.xml"/>
+        <mapper resource="mybatis/mappers/oss_admin-custom-mapper.xml"/>
+
+    </mappers>
+</configuration>

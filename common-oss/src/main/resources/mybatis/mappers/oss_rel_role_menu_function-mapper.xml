@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_rel_role_menu_function">
+    <resultMap id="BaseResultMap" type="com.envolope.oss.model.OssRelRoleMenuFunction">
+        <id column="role_id" property="roleId" jdbcType="INTEGER"/>
+        <id column="function_id" property="functionId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT role_id, function_id
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        <include refid="oss_rel_role_menu_function.SELECT_All_Column"/>
+        FROM oss_rel_role_menu_function
+        WHERE role_id = #{roleId,jdbcType=INTEGER}
+        AND function_id = #{functionId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        DELETE FROM oss_rel_role_menu_function
+        WHERE role_id = #{roleId,jdbcType=INTEGER}
+        AND function_id = #{functionId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        INSERT INTO oss_rel_role_menu_function ( role_id, 
+          function_id )
+        VALUES ( #{roleId,jdbcType=INTEGER}, 
+          #{functionId,jdbcType=INTEGER} )
+    </insert>
+    <insert id="insertSelective" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        INSERT INTO oss_rel_role_menu_function
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                role_id,
+                function_id,
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                #{roleId,jdbcType=INTEGER},
+                #{functionId,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO oss_rel_role_menu_function ( role_id, 
+          function_id )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.roleId,jdbcType=INTEGER}, 
+            #{item.functionId,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        UPDATE oss_rel_role_menu_function
+        <set>
+        </set>
+        WHERE role_id = #{roleId,jdbcType=INTEGER}
+        AND function_id = #{functionId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.envolope.oss.model.OssRelRoleMenuFunction">
+        UPDATE oss_rel_role_menu_function
+
+        WHERE role_id = #{roleId,jdbcType=INTEGER}
+        AND function_id = #{functionId,jdbcType=INTEGER}
+    </update>
+</mapper>

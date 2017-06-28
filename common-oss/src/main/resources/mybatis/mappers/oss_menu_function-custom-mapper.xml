@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_menu_function">
+    <select id="selectAllRequestUri" resultType="string">
+        (SELECT request_uri FROM oss_menu_function)
+        UNION (SELECT related_request_uri FROM oss_menu_function WHERE related_request_uri IS NOT NULL)
+    </select>
+</mapper>

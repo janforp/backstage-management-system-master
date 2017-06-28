@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_menu_module">
+    <resultMap id="BaseResultMap" type="com.janita.common.oss.model.OssMenuModule">
+        <id column="module_id" property="moduleId" jdbcType="INTEGER"/>
+        <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="order_by" property="orderBy" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT module_id, module_name, icon, order_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.common.oss.model.OssMenuModule">
+        <include refid="oss_menu_module.SELECT_All_Column"/>
+        FROM oss_menu_module
+        WHERE module_id = #{moduleId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.janita.common.oss.model.OssMenuModule">
+        DELETE FROM oss_menu_module
+        WHERE module_id = #{moduleId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.envolope.oss.model.OssMenuModule">
+        INSERT INTO oss_menu_module ( module_id, 
+          module_name, icon, order_by )
+        VALUES ( #{moduleId,jdbcType=INTEGER}, 
+          #{moduleName,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{orderBy,jdbcType=TINYINT} )
+    </insert>
+    <insert id="insertSelective" parameterType="com.janita.common.oss.model.OssMenuModule">
+        INSERT INTO oss_menu_module
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                module_id,
+            <if test="moduleName != null">
+                module_name,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="orderBy != null">
+                order_by,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                #{moduleId,jdbcType=INTEGER},
+            <if test="moduleName != null">
+                #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBy != null">
+                #{orderBy,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO oss_menu_module ( module_id, 
+          module_name, icon, order_by )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.moduleId,jdbcType=INTEGER}, 
+            #{item.moduleName,jdbcType=VARCHAR}, #{item.icon,jdbcType=VARCHAR}, #{item.`orderBy,jdbcType=TINYINT}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.janita.common.oss.model.OssMenuModule">
+        UPDATE oss_menu_module
+        <set>
+            <if test="moduleName != null">
+                module_name = #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBy != null">
+                order_by = #{orderBy,jdbcType=TINYINT},
+            </if>
+        </set>
+        WHERE module_id = #{moduleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.envolope.oss.model.OssMenuModule">
+        UPDATE oss_menu_module
+        SET module_name = #{moduleName,jdbcType=VARCHAR},
+            icon = #{icon,jdbcType=VARCHAR},
+            order_by = #{orderBy,jdbcType=TINYINT}
+        WHERE module_id = #{moduleId,jdbcType=INTEGER}
+    </update>
+</mapper>

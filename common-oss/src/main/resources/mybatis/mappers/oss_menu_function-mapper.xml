@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_menu_function">
+    <resultMap id="BaseResultMap" type="com.janita.common.oss.model.OssMenuFunction">
+        <id column="function_id" property="functionId" jdbcType="INTEGER"/>
+        <result column="module_id" property="moduleId" jdbcType="INTEGER"/>
+        <result column="request_uri" property="requestUri" jdbcType="VARCHAR"/>
+        <result column="related_request_uri" property="relatedRequestUri" jdbcType="VARCHAR"/>
+        <result column="focus_function_id" property="focusFunctionId" jdbcType="INTEGER"/>
+        <result column="function_name" property="functionName" jdbcType="VARCHAR"/>
+        <result column="function_desc" property="functionDesc" jdbcType="VARCHAR"/>
+        <result column="show_in_menu" property="showInMenu" jdbcType="TINYINT"/>
+        <result column="order_by" property="orderBy" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT function_id, module_id, request_uri, related_request_uri, focus_function_id, 
+        function_name, function_desc, show_in_menu, order_by
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        <include refid="oss_menu_function.SELECT_All_Column"/>
+        FROM oss_menu_function
+        WHERE function_id = #{functionId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        DELETE FROM oss_menu_function
+        WHERE function_id = #{functionId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        INSERT INTO oss_menu_function ( function_id, 
+          module_id, request_uri, related_request_uri, 
+          focus_function_id, function_name, function_desc, 
+          show_in_menu, order_by )
+        VALUES ( #{functionId,jdbcType=INTEGER}, 
+          #{moduleId,jdbcType=INTEGER}, #{requestUri,jdbcType=VARCHAR}, #{relatedRequestUri,jdbcType=VARCHAR}, 
+          #{focusFunctionId,jdbcType=INTEGER}, #{functionName,jdbcType=VARCHAR}, #{functionDesc,jdbcType=VARCHAR}, 
+          #{showInMenu,jdbcType=TINYINT}, #{orderBy,jdbcType=TINYINT} )
+    </insert>
+    <insert id="insertSelective" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        INSERT INTO oss_menu_function
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                function_id,
+            <if test="moduleId != null">
+                module_id,
+            </if>
+            <if test="requestUri != null">
+                request_uri,
+            </if>
+            <if test="relatedRequestUri != null">
+                related_request_uri,
+            </if>
+            <if test="focusFunctionId != null">
+                focus_function_id,
+            </if>
+            <if test="functionName != null">
+                function_name,
+            </if>
+            <if test="functionDesc != null">
+                function_desc,
+            </if>
+            <if test="showInMenu != null">
+                show_in_menu,
+            </if>
+            <if test="orderBy != null">
+                order_by,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+                #{functionId,jdbcType=INTEGER},
+            <if test="moduleId != null">
+                #{moduleId,jdbcType=INTEGER},
+            </if>
+            <if test="requestUri != null">
+                #{requestUri,jdbcType=VARCHAR},
+            </if>
+            <if test="relatedRequestUri != null">
+                #{relatedRequestUri,jdbcType=VARCHAR},
+            </if>
+            <if test="focusFunctionId != null">
+                #{focusFunctionId,jdbcType=INTEGER},
+            </if>
+            <if test="functionName != null">
+                #{functionName,jdbcType=VARCHAR},
+            </if>
+            <if test="functionDesc != null">
+                #{functionDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="showInMenu != null">
+                #{showInMenu,jdbcType=TINYINT},
+            </if>
+            <if test="orderBy != null">
+                #{orderBy,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO oss_menu_function ( function_id, 
+          module_id, request_uri, related_request_uri, 
+          focus_function_id, function_name, function_desc, 
+          show_in_menu, order_by )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.functionId,jdbcType=INTEGER}, 
+            #{item.moduleId,jdbcType=INTEGER}, #{item.requestUri,jdbcType=VARCHAR}, #{item.relatedRequestUri,jdbcType=VARCHAR}, 
+            #{item.focusFunctionId,jdbcType=INTEGER}, #{item.functionName,jdbcType=VARCHAR}, #{item.functionDesc,jdbcType=VARCHAR}, 
+            #{item.showInMenu,jdbcType=TINYINT}, #{item.orderBy,jdbcType=TINYINT}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        UPDATE oss_menu_function
+        <set>
+            <if test="moduleId != null">
+                module_id = #{moduleId,jdbcType=INTEGER},
+            </if>
+            <if test="requestUri != null">
+                request_uri = #{requestUri,jdbcType=VARCHAR},
+            </if>
+            <if test="relatedRequestUri != null">
+                related_request_uri = #{relatedRequestUri,jdbcType=VARCHAR},
+            </if>
+            <if test="focusFunctionId != null">
+                focus_function_id = #{focusFunctionId,jdbcType=INTEGER},
+            </if>
+            <if test="functionName != null">
+                function_name = #{functionName,jdbcType=VARCHAR},
+            </if>
+            <if test="functionDesc != null">
+                function_desc = #{functionDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="showInMenu != null">
+                show_in_menu = #{showInMenu,jdbcType=TINYINT},
+            </if>
+            <if test="orderBy != null">
+                order_by = #{orderBy,jdbcType=TINYINT},
+            </if>
+        </set>
+        WHERE function_id = #{functionId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.janita.common.oss.model.OssMenuFunction">
+        UPDATE oss_menu_function
+        SET module_id = #{moduleId,jdbcType=INTEGER},
+            request_uri = #{requestUri,jdbcType=VARCHAR},
+            related_request_uri = #{relatedRequestUri,jdbcType=VARCHAR},
+            focus_function_id = #{focusFunctionId,jdbcType=INTEGER},
+            function_name = #{functionName,jdbcType=VARCHAR},
+            function_desc = #{functionDesc,jdbcType=VARCHAR},
+            show_in_menu = #{showInMenu,jdbcType=TINYINT},
+            order_by = #{orderBy,jdbcType=TINYINT}
+        WHERE function_id = #{functionId,jdbcType=INTEGER}
+    </update>
+</mapper>

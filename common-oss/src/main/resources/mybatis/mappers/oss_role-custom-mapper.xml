@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_role">
+
+    <resultMap id="SelectByPageResultMap" type="com.envolope.oss.model.dto.OssRolePageDto"
+               extends="oss_role.BaseResultMap">
+        <result column="authority_count" property="authorityCount" jdbcType="BIGINT"/>
+        <result column="admin_count" property="adminCount" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM oss_role
+    </select>
+    <select id="selectByPage" parameterType="map" resultMap="SelectByPageResultMap">
+        SELECT
+        r.role_id,
+        r.role_name,
+        r.role_desc,
+        r.update_time_ms,
+        r.create_time_ms,
+        (
+        CASE
+        WHEN rel.authority_count IS NULL
+        THEN 0
+        ELSE rel.authority_count
+        END
+        ) AS authority_count,
+        (
+        CASE
+        WHEN a.admin_count IS NULL
+        THEN 0
+        ELSE a.admin_count
+        END
+        ) AS admin_count
+        FROM
+        oss_role r
+        LEFT JOIN
+        (SELECT
+        role_id,
+        COUNT(*) authority_count
+        FROM
+        oss_rel_role_menu_function
+        GROUP BY role_id) rel
+        ON rel.role_id = r.role_id
+        LEFT JOIN
+        (SELECT
+        role_id,
+        COUNT(*) admin_count
+        FROM
+        oss_admin
+        GROUP BY role_id) a
+        ON a.role_id = r.role_id
+        LIMIT #{start,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        <include refid="oss_role.SELECT_All_Column"/>
+        FROM oss_role
+    </select>
+
+</mapper>

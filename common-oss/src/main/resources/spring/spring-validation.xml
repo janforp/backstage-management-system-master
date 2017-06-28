@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="false">
+    <!--<bean id="message" class="org.springframework.context.support.ResourceBundleMessageSource">-->
+    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">-->
+    <bean id="messageSource" class="com.wujie.common.validation.support.spring.SpringResourceBundleMessageSource">
+        <constructor-arg name="basenames">
+            <list>
+                <value>message.message</value>
+                <value>message.manage</value>
+                <value>message.distribution_course</value>
+                <value>message.distribution_capital</value>
+                <value>message.distribution_user</value>
+                <value>message.distribution_order</value>
+                <value>message.distribution_withdraw</value>
+                <value>message.distribution_comments</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="defaultEncoding" value="utf-8"/>
+        <!--重新自动加载缓存时长-->
+        <constructor-arg name="cacheSeconds" value="5"/>
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->
+        <constructor-arg name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+    <bean id="regexSource" class="com.wujie.common.validation.support.RegexResourceBundleJsonSource">
+        <constructor-arg name="basenames">
+            <list>
+                <value>validation.regex.regex</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="cacheSeconds" value="5"/>
+        <constructor-arg name="defaultEncoding" value="utf-8"/>
+    </bean>
+    <bean id="ruleSource" class="com.wujie.common.validation.support.ValidationRuleResourceBundleJsonSource">
+        <constructor-arg name="basenames">
+            <list>
+                <value>validation.rule.rule</value>
+                <value>validation.rule.manage</value>
+                <value>validation.rule.distribution_course</value>
+                <value>validation.rule.distribution_order</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="cacheSeconds" value="5"/>
+        <constructor-arg name="defaultEncoding" value="utf-8"/>
+        <constructor-arg name="regexJsonSource" ref="regexSource"/>
+        <constructor-arg name="messageSource" ref="messageSource"/>
+    </bean>
+    <bean id="formRuleSource" class="com.wujie.common.validation.support.FormRuleListResourceBundleJsonSource">
+        <constructor-arg name="basenames">
+            <list>
+                <value>validation.form.form</value>
+                <value>validation.form.manage</value>
+                <value>validation.form.distribution_course</value>
+                <value>validation.form.distribution_order</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="cacheSeconds" value="5"/>
+        <constructor-arg name="defaultEncoding" value="utf-8"/>
+        <constructor-arg name="ruleJsonSource" ref="ruleSource"/>
+    </bean>
+    <bean id="messageJavascriptSource" class="com.wujie.common.validation.support.ResourceBundleJavascriptSource">
+        <constructor-arg name="resourceBundleJsonSource" ref="messageSource"/>
+        <constructor-arg name="javascriptResourceObjectName" value="MSG"/>
+    </bean>
+    <bean id="ruleJavascriptSource" class="com.wujie.common.validation.support.ResourceBundleJavascriptSource">
+        <constructor-arg name="resourceBundleJsonSource" ref="ruleSource"/>
+        <constructor-arg name="javascriptResourceObjectName" value="RULE"/>
+    </bean>
+    <bean id="formRuleJavascriptSource" class="com.wujie.common.validation.support.ResourceBundleJavascriptSource">
+        <constructor-arg name="resourceBundleJsonSource" ref="formRuleSource"/>
+        <constructor-arg name="javascriptResourceObjectName" value="FORM_RULE"/>
+    </bean>
+</beans>

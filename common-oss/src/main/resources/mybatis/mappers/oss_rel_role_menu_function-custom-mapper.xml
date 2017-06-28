@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_rel_role_menu_function">
+
+    <select id="selectByRoleId" parameterType="int" resultMap="oss_menu_function.BaseResultMap">
+        <include refid="oss_menu_function.SELECT_All_Column"/>
+        FROM oss_menu_function
+        WHERE function_id IN (
+        SELECT function_id FROM oss_rel_role_menu_function WHERE role_id = #{roleId,jdbcType=INTEGER}
+        )
+        ORDER BY order_by
+    </select>
+
+    <select id="selectFunctionIdByRoleId" parameterType="int" resultType="int">
+        SELECT function_id FROM oss_rel_role_menu_function WHERE role_id = #{roleId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByRoleIdAndShowInMenu" parameterType="int" resultMap="oss_menu_function.BaseResultMap">
+        <include refid="oss_menu_function.SELECT_All_Column"/>
+        FROM oss_menu_function
+        WHERE show_in_menu = 1
+        AND function_id IN (
+        SELECT function_id FROM oss_rel_role_menu_function WHERE role_id = #{roleId,jdbcType=INTEGER}
+        )
+        ORDER BY order_by
+    </select>
+
+    <delete id="deleteByRoleId" parameterType="int">
+        DELETE FROM oss_rel_role_menu_function WHERE role_id = #{roleId,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByRoleIds" parameterType="java.util.List">
+        DELETE FROM oss_rel_role_menu_function WHERE role_id IN
+        (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+        )
+    </delete>
+
+</mapper>

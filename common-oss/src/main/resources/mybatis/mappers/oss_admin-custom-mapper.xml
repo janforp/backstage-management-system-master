@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_admin">
+
+    <resultMap id="SelectByPageResultMap" type="com.janita.common.oss.dto.OssAccountPageDto"
+               extends="oss_admin.BaseResultMap">
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="SELECT_All_Column_without_pwd">
+        SELECT admin_id, role_id, real_name, login_name, NULL AS login_pwd,
+        cellphone, email, portrait, status, update_time_ms,
+        create_time_ms
+    </sql>
+    <select id="selectByLoginName" parameterType="string" resultMap="BaseResultMap">
+        <include refid="oss_admin.SELECT_All_Column"/>
+        FROM oss_admin
+        WHERE login_name = #{loginName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByCellphone" parameterType="string" resultMap="BaseResultMap">
+        <include refid="oss_admin.SELECT_All_Column"/>
+        FROM oss_admin
+        WHERE cellphone = #{cellphone,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEmail" parameterType="string" resultMap="BaseResultMap">
+        <include refid="oss_admin.SELECT_All_Column"/>
+        FROM oss_admin
+        WHERE email = #{email,jdbcType=VARCHAR}
+    </select>
+    <select id="selectCountByRoleId" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM oss_admin WHERE role_id = #{roleId,jdbcType=INTEGER}
+    </select>
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM oss_admin
+    </select>
+    <select id="selectByAdminId" resultMap="BaseResultMap" parameterType="int">
+        <include refid="oss_admin.SELECT_All_Column_without_pwd"/>
+        FROM oss_admin
+        WHERE admin_id = #{adminId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByPage" resultMap="SelectByPageResultMap">
+        SELECT a.admin_id, a.role_id, a.real_name, a.login_name,
+        a.cellphone, a.email, a.portrait, a.status, a.update_time_ms,
+        a.create_time_ms,r.role_name
+        FROM oss_admin a LEFT JOIN oss_role r ON r.role_id=a.role_id
+        LIMIT #{start,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </select>
+
+</mapper>

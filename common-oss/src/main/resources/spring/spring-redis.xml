@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- SESSION项目缓存配置 - START-->
+    <!-- jedis pool配置 -->
+    <bean id="cacheJedisPoolConfig_session" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${session.cache.redis.maxTotal}"/>
+        <property name="minIdle" value="${session.cache.redis.minIdle}"/>
+        <property name="maxIdle" value="${session.cache.redis.maxIdle}"/>
+        <property name="maxWaitMillis" value="${session.cache.redis.maxWaitMillis}"/>
+        <property name="blockWhenExhausted" value="${session.cache.redis.blockWhenExhausted}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${session.cache.redis.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${session.cache.redis.minEvictableIdleTimeMillis}"/>
+        <property name="testOnBorrow" value="${session.cache.redis.testOnBorrow}"/>
+        <property name="testWhileIdle" value="${session.cache.redis.testWhileIdle}"/>
+    </bean>
+    <!-- spring data redis -->
+    <bean id="cacheJedisConnectionFactory_session"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="usePool" value="true"></property>
+        <property name="hostName" value="${session.cache.redis.host}"/>
+        <property name="port" value="${session.cache.redis.port}"/>
+        <!--<property name="password" value="${session.cache.redis.password}"/>-->
+        <property name="timeout" value="${session.cache.redis.timeout}"/>
+        <property name="database" value="${session.cache.redis.database}"></property>
+        <constructor-arg index="0" ref="cacheJedisPoolConfig_session"/>
+    </bean>
+    <bean id="ossCacheRedisTemplate" class="com.wujie.common.redis.StringKeyRedisTemplate">
+        <constructor-arg ref="cacheJedisConnectionFactory_session"/>
+    </bean>
+    <!-- SESSION项目缓存配置 - END-->
+
+</beans>
+
+

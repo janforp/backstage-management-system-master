@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="oss_admin">
+    <resultMap id="BaseResultMap" type="com.janita.common.oss.bean.role.OssAdmin">
+        <id column="admin_id" property="adminId" jdbcType="INTEGER"/>
+        <result column="role_id" property="roleId" jdbcType="INTEGER"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR"/>
+        <result column="cellphone" property="cellphone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="update_time_ms" property="updateTimeMs" jdbcType="BIGINT"/>
+        <result column="create_time_ms" property="createTimeMs" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT admin_id, role_id, real_name, login_name, login_pwd, 
+        cellphone, email, portrait, status, update_time_ms, 
+        create_time_ms
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        <include refid="oss_admin.SELECT_All_Column"/>
+        FROM oss_admin
+        WHERE admin_id = #{adminId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        DELETE FROM oss_admin
+        WHERE admin_id = #{adminId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        INSERT INTO oss_admin ( role_id, 
+          real_name, login_name, login_pwd, 
+          cellphone, email, portrait, 
+          status, update_time_ms, create_time_ms )
+        VALUES ( #{roleId,jdbcType=INTEGER}, 
+          #{realName,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR}, 
+          #{cellphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{portrait,jdbcType=VARCHAR}, 
+          #{status,jdbcType=TINYINT}, #{updateTimeMs,jdbcType=BIGINT}, #{createTimeMs,jdbcType=BIGINT} )
+        <selectKey keyProperty="adminId" resultType="int">
+            SELECT LAST_INSERT_ID() AS adminId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        INSERT INTO oss_admin
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="loginPwd != null">
+                login_pwd,
+            </if>
+            <if test="cellphone != null">
+                cellphone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="portrait != null">
+                portrait,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="updateTimeMs != null">
+                update_time_ms,
+            </if>
+            <if test="createTimeMs != null">
+                create_time_ms,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPwd != null">
+                #{loginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="cellphone != null">
+                #{cellphone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="portrait != null">
+                #{portrait,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="updateTimeMs != null">
+                #{updateTimeMs,jdbcType=BIGINT},
+            </if>
+            <if test="createTimeMs != null">
+                #{createTimeMs,jdbcType=BIGINT},
+            </if>
+        </trim>
+        <selectKey keyProperty="adminId" resultType="int">
+            SELECT LAST_INSERT_ID() AS adminId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO oss_admin ( role_id, 
+          real_name, login_name, login_pwd, 
+          cellphone, email, portrait, 
+          status, update_time_ms, create_time_ms )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.roleId,jdbcType=INTEGER}, 
+            #{item.realName,jdbcType=VARCHAR}, #{item.loginName,jdbcType=VARCHAR}, #{item.loginPwd,jdbcType=VARCHAR}, 
+            #{item.cellphone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.portrait,jdbcType=VARCHAR}, 
+            #{item.status,jdbcType=TINYINT}, #{item.updateTimeMs,jdbcType=BIGINT}, #{item.createTimeMs,jdbcType=BIGINT}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        UPDATE oss_admin
+        <set>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                login_name = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPwd != null">
+                login_pwd = #{loginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="cellphone != null">
+                cellphone = #{cellphone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="portrait != null">
+                portrait = #{portrait,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="updateTimeMs != null">
+                update_time_ms = #{updateTimeMs,jdbcType=BIGINT},
+            </if>
+            <if test="createTimeMs != null">
+                create_time_ms = #{createTimeMs,jdbcType=BIGINT},
+            </if>
+        </set>
+        WHERE admin_id = #{adminId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.janita.common.oss.bean.role.OssAdmin">
+        UPDATE oss_admin
+        SET role_id = #{roleId,jdbcType=INTEGER},
+            real_name = #{realName,jdbcType=VARCHAR},
+            login_name = #{loginName,jdbcType=VARCHAR},
+            login_pwd = #{loginPwd,jdbcType=VARCHAR},
+            cellphone = #{cellphone,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            portrait = #{portrait,jdbcType=VARCHAR},
+            status = #{status,jdbcType=TINYINT},
+            update_time_ms = #{updateTimeMs,jdbcType=BIGINT},
+            create_time_ms = #{createTimeMs,jdbcType=BIGINT}
+        WHERE admin_id = #{adminId,jdbcType=INTEGER}
+    </update>
+</mapper>
