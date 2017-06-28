@@ -1,3 +1,5 @@
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page pageEncoding="UTF-8"%>
 <tiles:insertTemplate template="/WEB-INF/views/base/layout/layout-default.jsp">
 	<tiles:putAttribute name="title" value="请登录"/>

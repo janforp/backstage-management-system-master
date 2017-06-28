@@ -1,4 +1,4 @@
-package com.janita.common.oss.controller.pub;
+package com.janita.common.oss.controller.page.pub;
 
 import com.janita.common.oss.constant.ParamConsts;
 import com.janita.common.oss.constant.RequestConsts;

@@ -11,7 +11,215 @@
 
     <artifactId>common-oss</artifactId>
 
+    <!-- 依赖项定义 -->
     <dependencies>
+
+        <!-- umeditor -->
+        <dependency>
+            <groupId>cn.com.umeditor</groupId>
+            <artifactId>json</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.com.umeditor</groupId>
+            <artifactId>ueditor</artifactId>
+            <version>1.1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.iask</groupId>
+            <artifactId>red</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/openapi-sdk.jar</systemPath>
+        </dependency>
+
+        <!-- jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.9.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jsoup-1.9.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.craigq</groupId>
+            <artifactId>craigq-common</artifactId>
+            <version>1.2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/craigq-common-1.2.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <!-- craigq-quartz -->
+            <groupId>org.craigq</groupId>
+            <artifactId>craigq-quartz</artifactId>
+            <version>1.1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/craigq-quartz-1.1.1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-utils</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-utils-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-beanutil</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-beanutil-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-security</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-security-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-redis</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-redis-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-validator</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-validator-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-taglib</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-taglib-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-sdk-support</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-sdk-support-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-weixin-pay-sdk</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-weixin-pay-sdk-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wujie</groupId>
+            <artifactId>wujie-commons-weixin-official-account-sdk</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-weixin-official-account-sdk-1.4.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <!-- mailapi smtp -->
+            <groupId>com.patchca-0.5.0</groupId>
+            <artifactId>patchca-0.5.0</artifactId>
+            <version>1.4.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/patchca-0.5.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>3.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/commons-httpclient-3.1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>453</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/httpclient-4.5.3.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+
+        <dependency>
+            <!-- mailapi smtp -->
+            <groupId>com.sun.mail</groupId>
+            <artifactId>smtp</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- mailapi -->
+            <groupId>com.sun.mail</groupId>
+            <artifactId>mailapi</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
+
+        <!-- httpClient -->
+        <!--<dependency>-->
+        <!--<groupId>org.apache.httpcomponents</groupId>-->
+        <!--<artifactId>httpclient</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <!-- SPRING basic begin(一般不需要显式定义) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -40,48 +248,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <!--mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        <!-- email/scheduler/freemarker -->
 
         <!-- validation - start-->
         <dependency>
@@ -95,6 +262,48 @@
         </dependency>
         <!-- validation - end-->
 
+        <!-- AOP begin-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <!-- AOP end -->
+
+        <!-- PERSISTENCE start -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- optional datasource pool -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- 阿里云OSS SDK -->
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
+
+        <!-- PERSISTENCE end -->
+
+        <!-- redis - start -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
@@ -103,10 +312,155 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+        <!-- redis - end -->
+
+        <!-- WEB begin -->
+        <!-- spring mvc - start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!-- spring mvc - end -->
+
+        <!-- j2ee web spec -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <!-- tiles - start-->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+        </dependency>
+        <!-- tiles - end-->
+        <!-- WEB end -->
+
+        <!-- LOGGING begin -->
+        <!-- slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
 
         <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+
+        <!-- log4j 实际调用slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+        <!-- LOGGING end -->
+
+        <!-- GENERAL UTILS begin -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+
+
+        <!-- google java library -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+        </dependency>
+
+        <!--验证码工具-->
+        <!--<dependency>-->
+        <!--<groupId>org.patchca</groupId>-->
+        <!--<artifactId>patchca</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+
+            <artifactId>maven-compiler-plugin</artifactId>
+        </dependency>
+
+        <!-- TEST begin -->
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <!-- for xxxDemo class -->
+            <scope>compile</scope>
+        </dependency>
+
+        <!--mokito-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+
+        <!-- spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <!-- for xxxDemo class -->
+            <scope>compile</scope>
         </dependency>
 
         <!-- jetty -->
@@ -136,92 +490,39 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- tiles - start-->
+        <!--java程序生成excel文件-->
         <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-jsp</artifactId>
-        </dependency>
-        <!-- tiles - end-->
-
-        <dependency>
-            <!-- mailapi smtp -->
-            <groupId>servlet</groupId>
-            <artifactId>servlet-0.5.0</artifactId>
-            <version>3.1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/javax.servlet-api-3.1.0.jar</systemPath>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
         </dependency>
 
         <dependency>
-            <!-- mailapi smtp -->
-            <groupId>com.patchca-0.5.0</groupId>
-            <artifactId>patchca-0.5.0</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/patchca-0.5.0.jar</systemPath>
+            <groupId>org.sction</groupId>
+            <artifactId>phprpc</artifactId>
+            <version>3.0.2</version>
         </dependency>
 
         <dependency>
-            <groupId>org.craigq</groupId>
-            <artifactId>craigq-common</artifactId>
-            <version>1.2.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/craigq-common-1.2.0.jar</systemPath>
-        </dependency>
-
-        <!-- optional datasource pool -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.15</version>
         </dependency>
 
         <dependency>
-            <groupId>com.wujie</groupId>
-            <artifactId>wujie-commons-redis</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-redis-1.4.0.jar</systemPath>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.14</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.wujie</groupId>
-            <artifactId>wujie-commons-utils</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-utils-1.4.0.jar</systemPath>
-        </dependency>
 
-        <dependency>
-            <groupId>com.wujie</groupId>
-            <artifactId>wujie-commons-beanutil</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-beanutil-1.4.0.jar</systemPath>
-        </dependency>
 
-        <dependency>
-            <groupId>com.wujie</groupId>
-            <artifactId>wujie-commons-validator</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-validator-1.4.0.jar</systemPath>
-        </dependency>
 
-        <dependency>
-            <groupId>com.wujie</groupId>
-            <artifactId>wujie-commons-taglib</artifactId>
-            <version>1.4.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/wujie-commons-taglib-1.4.0.jar</systemPath>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.apache.geronimo.specs</groupId>-->
+        <!--<artifactId>geronimo-validation_1.1_spec</artifactId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
@@ -310,6 +611,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
