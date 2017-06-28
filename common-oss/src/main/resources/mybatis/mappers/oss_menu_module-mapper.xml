@@ -19,7 +19,7 @@
         DELETE FROM oss_menu_module
         WHERE module_id = #{moduleId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.envolope.oss.model.OssMenuModule">
+    <insert id="insert" parameterType="com.janita.common.oss.model.OssMenuModule">
         INSERT INTO oss_menu_module ( module_id, 
           module_name, icon, order_by )
         VALUES ( #{moduleId,jdbcType=INTEGER}, 
@@ -79,7 +79,7 @@
         </set>
         WHERE module_id = #{moduleId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.envolope.oss.model.OssMenuModule">
+    <update id="updateByPrimaryKey" parameterType="com.janita.common.oss.model.OssMenuModule">
         UPDATE oss_menu_module
         SET module_name = #{moduleName,jdbcType=VARCHAR},
             icon = #{icon,jdbcType=VARCHAR},

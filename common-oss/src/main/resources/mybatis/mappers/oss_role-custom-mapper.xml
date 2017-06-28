@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="oss_role">
 
-    <resultMap id="SelectByPageResultMap" type="com.envolope.oss.model.dto.OssRolePageDto"
+    <resultMap id="SelectByPageResultMap" type="com.janita.common.oss.dto.OssRolePageDto"
                extends="oss_role.BaseResultMap">
         <result column="authority_count" property="authorityCount" jdbcType="BIGINT"/>
         <result column="admin_count" property="adminCount" jdbcType="BIGINT"/>
